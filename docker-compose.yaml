@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  litellm-proxy:
+    image: ghcr.io/berriai/litellm:main-latest
+    pull_policy: always
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm/config.yaml:/app/config.yaml
+    command: --config /app/config.yaml --detailed_debug
+    restart: always
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    pull_policy: always
+    ports:
+      - "3020:8080"
+    environment:
+      - ENABLE_WEBSOCKET_SUPPORT=false
+    volumes:
+      - open-webui-data:/app/backend/data
+    depends_on:
+      - litellm-proxy
+    restart: always
+
+volumes:
+  open-webui-data:
