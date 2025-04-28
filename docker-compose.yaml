@@ -1,0 +1,28 @@
+services:
+  litellm-proxy:
+    image: ghcr.io/berriai/litellm:main-latest
+    pull_policy: always
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./litellm/config.yaml:/app/config.yaml
+    command: --config /app/config.yaml --detailed_debug
+    restart: always
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    pull_policy: always
+    ports:
+      - "3020:8080"
+    environment:
+      - ENABLE_WEBSOCKET_SUPPORT=false
+    volumes:
+      - open-webui-data:/app/backend/data # Mount for Open Web UI's data directory
+      - ./persistent-data:/app/backend/data # Additional persistent data mount
+    depends_on:
+      - litellm-proxy
+    restart: always
+
+volumes:
+  open-webui-data: 
+  persistent-data: # Define the persistent volume for your knowledge
