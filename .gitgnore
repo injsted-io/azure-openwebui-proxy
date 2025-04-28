@@ -51,7 +51,13 @@ scripts/*.tmp
 # LiteLLM temp stuff (if you configure logging later)
 litellm/logs/
 
-/persistent-data/
+# Ignore everything inside persistent-data
+persistent-data/*
+
+# But track the directory itself
+!persistent-data/
 
 .idea
 .vscode
+
+.env

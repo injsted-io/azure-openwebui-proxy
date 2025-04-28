@@ -8,6 +8,9 @@ services:
       - ./litellm/config.yaml:/app/config.yaml
     command: --config /app/config.yaml --detailed_debug
     restart: always
+    environment:
+      - AZURE_API_KEY=${AZURE_API_KEY}
+      - AZURE_API_BASE=${AZURE_API_BASE}
 
   open-webui:
     image: ghcr.io/open-webui/open-webui:main
@@ -16,6 +19,8 @@ services:
       - "3020:8080"
     environment:
       - ENABLE_WEBSOCKET_SUPPORT=false
+      - AZURE_API_KEY=${AZURE_API_KEY}
+      - AZURE_API_BASE=${AZURE_API_BASE}
     volumes:
       - open-webui-data:/app/backend/data # Mount for Open Web UI's data directory
       - ./persistent-data:/app/backend/data # Additional persistent data mount
