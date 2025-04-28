@@ -50,3 +50,4 @@ scripts/*.tmp
 
 # LiteLLM temp stuff (if you configure logging later)
 litellm/logs/
+persistent-data/

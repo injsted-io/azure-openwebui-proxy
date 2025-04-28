@@ -38,7 +38,7 @@ Access:
 
 ## Project Structure
 
-```
+```     
 azure-openwebui-proxy/
 ├── docker-compose.yaml
 ├── litellm/
