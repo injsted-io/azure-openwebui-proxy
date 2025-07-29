@@ -13,7 +13,10 @@ services:
       - AZURE_API_BASE=${AZURE_API_BASE}
 
   open-webui:
-    image: ghcr.io/open-webui/open-webui:main
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/open-webui/open-webui:latest
     pull_policy: always
     ports:
       - "3020:8080"
@@ -24,7 +27,7 @@ services:
     volumes:
       - open-webui-data:/app/backend/data # Mount for Open Web UI's data directory
       - ./persistent-data:/app/backend/data # Additional persistent data mount
-      - /Users/cristhian.soria/Documents/dev/ # Mount your local repository for knowledge base
+      - /Users/cristhian.soria/Documents/dev/:/app/repos:ro  # Mount your local repository for knowledge base
     depends_on:
       - litellm-proxy
     restart: always
