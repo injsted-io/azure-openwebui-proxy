@@ -6,27 +6,27 @@ model_list:
   - model_name: gpt-4.1
     litellm_params:
       model: azure/gpt-4.1
-      api_key: ${AZURE_OPENAI_API_KEY}
+      api_key: ${AZURE_API_KEY}
       api_base: https://cst-prod.openai.azure.com/
       api_version: 2025-01-01-preview
 
   - model_name: gpt-4o
     litellm_params:
       model: azure/gpt-4o-08-06
-      api_key: ${AZURE_OPENAI_API_KEY}
+      api_key: ${AZURE_API_KEY}
       api_base: https://cst-prod.openai.azure.com/
       api_version: 2025-01-01-preview
   
   - model_name: o4-mini
     litellm_params:
       model: azure/o4-mini
-      api_key: ${AZURE_OPENAI_API_KEY}
+      api_key: ${AZURE_API_KEY}
       api_base: https://cst-prod.openai.azure.com/
       api_version: 2025-04-01-preview
 
   - model_name: azure-embeddings
     litellm_params:
       model: azure/text-embedding-3-large
-      api_key: ${AZURE_OPENAI_API_KEY}
+      api_key: ${AZURE_API_KEY}
       api_base: https://cst-prod.openai.azure.com
       api_version: 2023-07-01-preview

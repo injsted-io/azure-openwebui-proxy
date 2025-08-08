@@ -1,5 +1,5 @@
 # Dockerfile
-FROM ghcr.io/open-webui/open-webui:main
+FROM ghcr.io/open-webui/open-webui:latest
 
 # Install ripgrep via the distro’s package manager
 USER root
