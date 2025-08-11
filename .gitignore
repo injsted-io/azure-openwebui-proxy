@@ -42,7 +42,6 @@ tmp/
 
 # Ignore generated files
 *.out
-*.log
 
 # Optional: if you add a "scripts" folder
 scripts/*.log
@@ -62,3 +61,34 @@ persistent-data/*
 .vscode
 
 .env
+
+# --- Terraform (scoped to infra/tf) ---
+# Local working dirs (providers/plugins cache)
+infra/tf/**/.terraform/
+
+# State files (keep these out of git; store remotely like S3 instead)
+infra/tf/**/*.tfstate
+infra/tf/**/*.tfstate.*
+
+# Crash logs
+infra/tf/**/crash.log
+infra/tf/**/crash.*.log
+
+# Sensitive variable files (use *.example for committed templates)
+infra/tf/**/*.tfvars
+infra/tf/**/*.tfvars.json
+infra/tf/**/terraform.tfvars
+infra/tf/**/terraform.tfvars.json
+infra/tf/**/*.auto.tfvars
+infra/tf/**/*.auto.tfvars.json
+
+# Local plans / outputs produced by CLI
+infra/tf/**/*.tfplan
+infra/tf/**/*.plan
+infra/tf/**/*.out
+
+# Editor/OS noise (optional, but helpful)
+infra/tf/**/.DS_Store
+infra/tf/**/.idea/
+infra/tf/**/.vscode/
+infra/tf/tfplan

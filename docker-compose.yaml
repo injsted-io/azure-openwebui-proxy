@@ -32,9 +32,9 @@ services:
       - S3_BUCKET_NAME=${S3_BUCKET_NAME}
       - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
     volumes:
-      # - open-webui-data:/app/backend/data
+       - open-webui-data:/app/backend/data
       # - ./persistent-data:/app/backend/data
-      - /Users/cristhian.soria/Documents/dev/:/app/repos:ro
+#      - /Users/cristhian.soria/Documents/dev/:/app/repos:ro
     depends_on:
       - litellm-proxy
     restart: always
