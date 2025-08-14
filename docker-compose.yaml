@@ -25,6 +25,22 @@ services:
       # - DOCLING_SERVE_MAX_REQUEST_SIZE=50
     restart: unless-stopped
 
+  voyage-shim:
+    build:
+      context: ./voyage-shim
+      dockerfile: Dockerfile
+    environment:
+      - VOYAGE_API_KEY=${VOYAGE_API_KEY}
+      - VOYAGE_MODEL=${VOYAGE_MODEL}
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8081/rerank", "-X", "POST", "-H", "Content-Type: application/json", "-d", "{\"query\":\"ping\",\"documents\":[\"a\"],\"model\":\"rerank-2.5\"}"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
   open-webui:
     build:
       context: .
@@ -54,6 +70,7 @@ services:
     depends_on:
       - litellm-proxy
       - docling
+      - voyage-shim
     restart: always
 
 volumes:
