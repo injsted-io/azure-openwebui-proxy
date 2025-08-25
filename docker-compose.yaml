@@ -50,20 +50,24 @@ services:
     ports:
       - "3020:8080"
     environment:
-      - ENABLE_WEBSOCKET_SUPPORT=false
-      - STORAGE_PROVIDER=${STORAGE_PROVIDER}  # This is crucial!
-      - ENV=${ENV}
-      - DATABASE_URL=${DATABASE_URL}
-      - VECTOR_DB=${VECTOR_DB}
-      # S3 Configuration
-      - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID}
-      - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY}
-      - S3_REGION_NAME=${S3_REGION_NAME}  # Changed from S3_DEFAULT_REGION
-      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
-      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
-      - AZURE_API_KEY=${AZURE_API_KEY}
-      - DOCLING_SERVER_URL=http://docling:5001
-    # volumes:
+      STORAGE_PROVIDER: "${STORAGE_PROVIDER}"
+      ENV: "${ENV}"
+      DATABASE_URL: "${DATABASE_URL}"
+      VECTOR_DB: "${VECTOR_DB}"
+      S3_ACCESS_KEY_ID: "${S3_ACCESS_KEY_ID}"
+      S3_SECRET_ACCESS_KEY: "${S3_SECRET_ACCESS_KEY}"
+      S3_REGION_NAME: "${S3_REGION_NAME}"
+      S3_BUCKET_NAME: "${S3_BUCKET_NAME}"
+      S3_ENDPOINT_URL: "${S3_ENDPOINT_URL}"
+      AZURE_API_KEY: "${AZURE_API_KEY}"
+      DOCLING_SERVER_URL: "${DOCLING_SERVER_URL}"
+      ENABLE_WEBSOCKET_SUPPORT: "${ENABLE_WEBSOCKET_SUPPORT}"
+      WEB_SEARCH_CONCURRENT_REQUESTS: "${WEB_SEARCH_CONCURRENT_REQUESTS}"
+      WEB_SEARCH_RESULT_COUNT: "${WEB_SEARCH_RESULT_COUNT}"
+      UVICORN_WORKERS: "${UVICORN_WORKERS}"
+      THREAD_POOL_SIZE: "${THREAD_POOL_SIZE}"
+
+      # volumes:
     #    - open-webui-data:/app/backend/data
       # - ./persistent-data:/app/backend/data
 #      - /Users/cristhian.soria/Documents/dev/:/app/repos:ro
