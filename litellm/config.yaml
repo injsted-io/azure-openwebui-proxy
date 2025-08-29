@@ -30,3 +30,24 @@ model_list:
       api_key: os.environ/AZURE_API_KEY
       api_base: https://cst-prod.openai.azure.com
       api_version: 2023-07-01-preview
+
+  - model_name: dall-e-3
+    litellm_params:
+      model: azure/dall-e-3
+      api_key: os.environ/AZURE_API_KEY
+      api_base: https://cst-prod.openai.azure.com/
+      api_version: "2024-02-01"
+    model_info: 
+      mode: "image_generation"
+      
+  - model_name: opus4-1          # <- your alias
+    litellm_params:
+      # Use Converse route (recommended for new Bedrock models)
+      model: bedrock/converse/us.anthropic.claude-opus-4-1-20250805-v1:0
+      reasoning_effort: "low"
+      extra_headers:
+        anthropic-beta: "interleaved-thinking-2025-05-14"
+      aws_region_name: os.environ/AWS_REGION     # pick your region
+      # auth can come from env or here:
+      aws_access_key_id: os.environ/AWS_ACCESS_KEY_ID
+      aws_secret_access_key: os.environ/AWS_SECRET_ACCESS_KEY
